@@ -7,6 +7,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass #to create class variables
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
+
 #just like a config file; in here, the config info (raw data, where we save the training or test data) that is needed to know by the data ingestion component, will be tell/initialise/create in (give to) this class
 @dataclass
 class DataIngestionConfig:
@@ -47,6 +51,10 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e,sys)
 
+# do data ingestion, then data transformation
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data_path,test_data_path=obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    data_transformation.initiate_data_transformation(train_data_path,test_data_path)
