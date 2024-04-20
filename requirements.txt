@@ -6,4 +6,5 @@ scikit-learn
 catboost
 xgboost
 dill
+Flask
 # -e . #only run -e . once at the last only, we dun wan to keep run and built the package when we wanna pip install a lib during development
